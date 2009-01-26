@@ -1,3 +1,7 @@
+[REVISION 20090127]
+
+[FIXED] Deprecation warning relating too i18n (github/crishoj).
+
 [REVISION 20080131]
 
 [FIXED] belongs_to associations failing when no table exists.
