@@ -1,3 +1,7 @@
+[REVISION 20090206]
+
+[CHANGED] Only validate uniqueness if the column changes value.
+
 [REVISION 20090127]
 
 [FIXED] Deprecation warning relating too i18n (github/crishoj).

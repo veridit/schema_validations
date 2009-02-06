@@ -79,7 +79,12 @@ module RedHillConsulting::SchemaValidations::ActiveRecord
           end
 
           # UNIQUE constraints
-          validates_uniqueness_of name, :scope => column.unique_scope.map(&:to_sym), :allow_nil => true, :case_sensitive => column.case_sensitive? if column.unique?
+          validates_uniqueness_of name, \
+                                  :scope => column.unique_scope.map(&:to_sym), \
+                                  :allow_nil => true, \
+                                  :case_sensitive => column.case_sensitive?, \
+                                  :if => "#{name}_changed?".to_sym \
+                                  if column.unique?
         end
       end
       
@@ -95,7 +100,11 @@ module RedHillConsulting::SchemaValidations::ActiveRecord
           ) if column.required_on
 
           # UNIQUE constraints
-          validates_uniqueness_of column.name.to_sym, :scope => column.unique_scope.map(&:to_sym), :allow_nil => true if column.unique?
+          validates_uniqueness_of column.name.to_sym, \
+                                  :scope => column.unique_scope.map(&:to_sym), \
+                                  :allow_nil => true, \
+                                  :if => "#{column.name}_changed?".to_sym \
+                                  if column.unique?
         end
       end
 
