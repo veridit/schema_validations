@@ -78,7 +78,7 @@ module RedHillConsulting::SchemaValidations::ActiveRecord
         
         if column.type == :integer
           validates_numericality_of name, :allow_nil => true, :only_integer => true
-        elsif column.type == :decimal
+        elsif column.type == :decimal and column.precision and column.scale
           max_decimal = (10 ** (column.precision - column.scale)) - (1.0/(10 ** column.scale))
 
           validates_numericality_of name, :allow_nil => true, :less_than => max_decimal, :greater_than => -max_decimal
